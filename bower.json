@@ -1,0 +1,21 @@
+{
+  "name": "crafty-tiled-map",
+  "main": "index.js",
+  "version": "0.0.1",
+  "authors": [
+    "Daniel Teixeira <daniel.t.dt@gmail.com>"
+  ],
+  "description": "Crafty.js plugin for maps created using Tiled Map Editor (http://www.mapeditor.org/)",
+  "keywords": [
+    "crafty",
+    "tiled-map-editor"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "Makefile",
+    "test"
+  ]
+}
