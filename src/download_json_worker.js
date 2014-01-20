@@ -35,13 +35,13 @@
           json: req.response
         });
       }
-    }
+    };
 
     req.onerror = function () {
       self.postMessage({
         error: new Error('Network error')
       });
-    }
+    };
 
     req.send();
 
@@ -50,7 +50,7 @@
       if (req.readyState < 4) {
         req.abort();
         self.postMessage({
-          error: new Error('xhr request timed out!');
+          error: new Error('xhr request timed out!')
         });
       }
     }, DOWNLOAD_TIMEOUT_IN_SECONDS);

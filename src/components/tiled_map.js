@@ -1,3 +1,5 @@
+'use strict';
+
 function createSpriteFromTileset(tileset) {
   return Crafty.sprite(
     tileset.tilewidth,
@@ -51,11 +53,11 @@ Crafty.c('TiledMap', {
     tiledMap.tilesets.forEach(createSpriteFromTileset);
 
     // Define layer z value (this value will be add to each entity on layer)
-    tiledMap.layers.forEach(function (layer, i) { layer.z = i });
+    tiledMap.layers.forEach(function (layer, i) { layer.z = i; });
 
     // Apply objects
     tiledMap.layers
-    .filter(function (layer) { return layer.type === 'objectgroup' })
+    .filter(function (layer) { return layer.type === 'objectgroup'; })
     .forEach(function (layer) {
       for (var i = 0; i < layer.objects; i++) {
         var object = layer.objects[i];

@@ -1,3 +1,5 @@
+'use strict';
+
 Crafty.c('Tile', {
   init: function () {
     this.requires('Grid, Canvas');

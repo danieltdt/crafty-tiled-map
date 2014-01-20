@@ -1,0 +1,10 @@
+{
+  "browser"      : true,
+  "globalstrict" : true,
+
+  "globals"      : {
+    "module"  : true,
+    "require" : true,
+    "Crafty"  : true
+  }
+}

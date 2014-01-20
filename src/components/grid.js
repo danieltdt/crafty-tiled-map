@@ -1,3 +1,5 @@
+'use strict';
+
 Crafty.c('Grid', {
   init: function () {
     this.requires('2D');
