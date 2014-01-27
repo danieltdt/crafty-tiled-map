@@ -1,3 +1,56 @@
+(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+'use strict';
+
+Crafty.c('Grid', {
+  init: function () {
+    this.requires('2D');
+  },
+
+  // Redefine the grid properties for the current level.
+  forLevel: function (level) {
+    this._level = level;
+
+    this.attr({
+      w: this._level.tilewidth,
+      h: this._level.tileheight
+    });
+  },
+
+  // Locate this entity at the given position on the grid
+  at: function (x, y) {
+    if (!this._level)
+      throw new Error('You must call .forLevel before');
+
+    if (arguments.length === 0) {
+      return {
+        x: this.x / this.w,
+        y: this.y / this.h
+      };
+    } else {
+      this.attr({
+        x: x * this.w,
+        y: y * this.h
+      });
+      return this;
+    }
+  }
+});
+
+},{}],2:[function(require,module,exports){
+'use strict';
+
+Crafty.c('Tile', {
+  init: function () {
+    this.requires('Grid, Canvas');
+  },
+  setGid: function (gid) {
+    this.gid = gid;
+
+    return this;
+  }
+});
+
+},{}],3:[function(require,module,exports){
 'use strict';
 
 Crafty.c('TiledMap', {
@@ -300,3 +353,39 @@ Crafty.c('TiledMap', {
     }
   }
 });
+
+},{}],4:[function(require,module,exports){
+'use strict';
+
+require('./components/grid');
+require('./components/tile');
+require('./components/tiled_map');
+
+module.exports = TiledMap;
+
+function TiledMap(jsonPath, options) {
+  if (!(this instanceof TiledMap))
+    return new TiledMap(jsonPath, options);
+
+  this.jsonPath = jsonPath;
+
+  this.worker = new Worker('download_json_worker.js');
+}
+
+TiledMap.prototype.downloaded = function (fn) {
+  this.worker.addEventListener('message', loadMap(this, fn), false);
+  this.worker.postMessage('download');
+};
+
+function loadMap(context, callback) {
+  return function workerListener(e) {
+    var result = e.data;
+
+    if (result.error)
+      return callback(new Error('Error on loading map: ' + result.error));
+
+    callback(null, result.json);
+  };
+}
+
+},{"./components/grid":1,"./components/tile":2,"./components/tiled_map":3}]},{},[4])

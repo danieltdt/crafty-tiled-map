@@ -1,6 +1,7 @@
 {
   "browser"      : true,
   "globalstrict" : true,
+  "lastsemic"    : true,
 
   "globals"      : {
     "module"  : true,

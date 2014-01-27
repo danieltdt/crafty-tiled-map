@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/danieltdt/crafty-tiled-map/issues"
   },
-  "homepage": "https://github.com/danieltdt/crafty-tiled-map"
+  "homepage": "https://github.com/danieltdt/crafty-tiled-map",
+  "dependencies": {
+    "browserify": "3.24.1"
+  }
 }

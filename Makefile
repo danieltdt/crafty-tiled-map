@@ -1,7 +1,7 @@
 all: clear browserify
 
 clear:
-	rm index.js
+	rm -f index.js
 
 browserify:
-	browserify src/* -o index.js
+	browserify src/ -o index.js

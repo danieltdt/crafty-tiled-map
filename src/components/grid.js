@@ -3,7 +3,6 @@
 Crafty.c('Grid', {
   init: function () {
     this.requires('2D');
-
   },
 
   // Redefine the grid properties for the current level.
