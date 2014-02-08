@@ -4,7 +4,7 @@ Crafty.c('TiledMap', {
   init: function () {
     // Defines a default object builder
     this.setObjectBuilderFor('$default', function (object, layer) {
-      Crafty.e('2D, Canvas, Collision, ' + object.type)
+      Crafty.e('2D, Canvas, Collision, Grid ' + object.type)
       .attr({
         x: object.x,
         y: object.y,
