@@ -40,8 +40,6 @@ Crafty.c('TiledMap', {
       return grouped;
     }, {});
 
-    this.determineCameraSegments();
-
     // This will create sprites (which will create tile components)
     tiledMap.tilesets.forEach(this.createSpriteFromTileset);
 
@@ -111,6 +109,20 @@ Crafty.c('TiledMap', {
     this.visibleLayers.tilelayer.map(function (layer) {
       return {gid: layer.data[x + y * this.tiledMap.width], z: layer.z};
     });
+  },
+
+  cameraFollow: function () {
+    var args = Array.prototype.slice.call(arguments);
+    var entity = args[0];
+    var self = this;
+
+    self.determineCameraSegments();
+
+    entity.bind('Move', function () {
+      self.cameraSegment.moveCamera(this.x, this.y);
+    });
+
+    Crafty.viewport.follow.apply(Crafty.viewport, args);
   },
 
   // Divide the camera into seagments to determine when to load/unload tiles

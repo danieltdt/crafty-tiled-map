@@ -9,30 +9,20 @@ Usage
 
 ```javascript
 Crafty.scene('Main', function () {
-  var map = new TiledMap('url/to/tiled/map.json');
+  var mapLoader = new CraftyTiledMap('url/to/tiled/map.json');
 
-  map.downloaded(function (err, json) {
-    var map = Crafty.e('TiledMap')
-    .setObjectBuilderFor('Player', function (object, layer) {
-      Crafty.e('MyPlayer')
-      .attr({
-        x: object.x,
-        y: object.y,
-        z: layer.z,
-        w: object.width,
-        h: object.height
-      });
-    })
-    .setTiledMap(json);
+  mapLoader.downloaded(function (err, json) {
+    // Errors on downloading json comes here.
+    if (err) throw err;
 
-    Crafty('MyPlayer').bind('Move', function () {
-      map.cameraSegment.moveCamera(this.x, this.y);
-    });
+    var map = Crafty.e('TiledMap');
 
-    Crafty.viewport.follow(Crafty('MyPlayer'), 0, 0);
+    // Create entities based on json;
+    map.setTiledMap(json);
 
-    Crafty.audio.stop();
-    Crafty.audio.play('background/song/for/this/map', -1, 1.0);
+    // Optionally, you can change Crafty camera to follow the given entity,
+    //   caching not visible tiles.
+    map.cameraFollow(Crafty('Player'));
   });
 });
 ```
@@ -45,5 +35,5 @@ Thanks
 ------
 
   This plugin is based on [Jonas Olmstead's post](http://tinymmo.blogspot.se/2013/06/tile-maps-of-unusual-size.html)
-  about tiled maps and an old crafty.js component for tiled map editor (I
+  about tiled maps; and an old crafty.js component for tiled map editor (I
   couldn't find the link ): )

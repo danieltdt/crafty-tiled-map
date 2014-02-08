@@ -67,6 +67,8 @@
     switch (msg.command) {
       case 'download': downloadJson(msg.data); break;
       case 'clearCache': clearJsonCache(); break;
+      default:
+        self.postMessage({error: new Error('Invalid command: ' + msg.command)});
     }
   });
 }());
