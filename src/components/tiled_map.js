@@ -4,15 +4,26 @@ Crafty.c('TiledMap', {
   init: function () {
     // Defines a default object builder
     this.setObjectBuilderFor('$default', function (object, layer) {
-      Crafty.e('2D, Canvas, Collision, Grid ' + object.type)
-      .attr({
-        x: object.x,
-        y: object.y,
-        w: object.width,
-        h: object.height,
-        z: layer.z
-      })
-      .collision();
+      var objectEntity =
+        Crafty.e('2D, Canvas, Collision, Grid ' + object.type)
+        .attr({
+          x: object.x,
+          y: object.y,
+          w: object.width,
+          h: object.height,
+          z: layer.z
+        });
+
+      if ('polyline' in object) {
+        var polygon =
+          new Crafty.polygon(object.polyline.map(function (point) {
+            return [point.x, point.y];
+          }));
+
+        objectEntity.collision(polygon);
+      } else {
+        objectEntity.collision();
+      }
     });
 
     return this;
