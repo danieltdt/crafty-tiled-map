@@ -52,15 +52,22 @@ Crafty.c('TiledMap', {
     }, {});
 
     // This will create sprites (which will create tile components)
-    tiledMap.tilesets.forEach(this.createSpriteFromTileset);
+    tiledMap.tilesets.forEach(this.createSpriteFromTileset.bind(this));
 
     // Apply images
-    (this.visibleLayers.imagelayer || []).forEach(this.createImageFromLayer);
+    (this.visibleLayers.imagelayer || []).forEach(this.createImageFromLayer.bind(this));
 
     // Apply objects
-    (this.visibleLayers.objectgroup || []).forEach(this.createObjectsOfLayer);
+    (this.visibleLayers.objectgroup || []).forEach(this.createObjectsOfLayer.bind(this));
 
     return this;
+  },
+
+  createImageFromLayer: function (layer) {
+    Crafty.e('2D, DOM, Grid, Image')
+    .forLevel(this.tiledMap)
+    .at({x: layer.x, y: layer.y})
+    .image(layer.image);
   },
 
   createObjectsOfLayer: function (layer) {

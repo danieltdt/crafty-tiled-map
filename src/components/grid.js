@@ -13,6 +13,8 @@ Crafty.c('Grid', {
       w: this._level.tilewidth,
       h: this._level.tileheight
     });
+
+    return this;
   },
 
   // Locate this entity at the given position on the grid

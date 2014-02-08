@@ -18,7 +18,7 @@ Crafty.scene('Main', function () {
     var map = Crafty.e('TiledMap');
 
     // Create entities based on json;
-    map.setTiledMap(json);
+    map.setTiledMap(JSON.parse(json));
 
     // Optionally, you can change Crafty camera to follow the given entity,
     //   caching not visible tiles.
