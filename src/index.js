@@ -30,3 +30,5 @@ CraftyTiledMap.prototype.downloaded = function craftyTiledMapDownloaded(fn) {
 };
 
 module.exports = CraftyTiledMap;
+
+Crafty.TiledMap = CraftyTiledMap;

@@ -9,7 +9,7 @@ Usage
 
 ```javascript
 Crafty.scene('Main', function () {
-  var mapLoader = new CraftyTiledMap('url/to/tiled/map.json');
+  var mapLoader = new Crafty.TiledMap('url/to/tiled/map.json');
 
   mapLoader.downloaded(function (err, json) {
     // Errors on downloading json comes here.
