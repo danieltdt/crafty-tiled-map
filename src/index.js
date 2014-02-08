@@ -20,8 +20,11 @@ function CraftyTiledMap(jsonPath, options) {
     return new CraftyTiledMap(jsonPath, options);
 
   this.jsonPath = jsonPath;
+  this.workerPath =
+    ('/bower_components/crafty-tiled-map/download_json_worker.js' ||
+     options.workerPath);
 
-  this.worker = new Worker('download_json_worker.js');
+  this.worker = new Worker(this.workerPath);
 }
 
 CraftyTiledMap.prototype.downloaded = function craftyTiledMapDownloaded(fn) {
