@@ -74,7 +74,7 @@ Crafty.c('TiledMap', {
     if (!('objects' in layer) || layer.type !== 'objectgroup')
       throw new Error('You must provide a layer of objects');
 
-    for (var i = 0; i < layer.objects; i++) {
+    for (var i = 0; i < layer.objects.length; i++) {
       var object = layer.objects[i];
 
       object.type = (object.type || 'ObjectCollision');
