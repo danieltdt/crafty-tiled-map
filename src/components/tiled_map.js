@@ -66,7 +66,7 @@ Crafty.c('TiledMap', {
   createImageFromLayer: function (layer) {
     Crafty.e('2D, Canvas, Grid, Image')
     .forLevel(this.tiledMap)
-    .at({x: layer.x, y: layer.y})
+    .at(layer.x, layer.y)
     .image(layer.image);
   },
 
