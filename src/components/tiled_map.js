@@ -179,8 +179,8 @@ Crafty.c('TiledMap', {
       currentSegmentLinearPosition: -1,
 
       getSegmentLinearPositionAt: function (x, y) {
-        var column = Math.floor(x / segmentWidthInTiles * tileWidthInPx);
-        var row = Math.floor(y / segmentHeightInTiles * tileHeightInPx);
+        var column = Math.floor(x / segmentWidthInTiles);
+        var row = Math.floor(y / segmentHeightInTiles);
 
         return column + row * this.segmentsPerRow;
       },
