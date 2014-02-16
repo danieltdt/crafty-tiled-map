@@ -4,4 +4,4 @@ clear:
 	rm -f index.js
 
 browserify:
-	browserify src/ -o index.js
+	@./node_modules/.bin/browserify src/ -o index.js
