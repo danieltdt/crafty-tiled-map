@@ -137,7 +137,7 @@ Crafty.c('TiledMap', {
     self.determineCameraSegments();
 
     entity.bind('Move', function () {
-      self.cameraSegment.moveCamera(this.x, this.y);
+      self.moveCamera(this.x, this.y);
     });
 
     Crafty.viewport.follow.apply(Crafty.viewport, args);
