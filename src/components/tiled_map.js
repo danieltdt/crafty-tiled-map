@@ -322,8 +322,8 @@ Crafty.c('TiledMap', {
   moveCamera: function (x, y) {
     var newPosition = this.cameraSegment.getSegmentLinearPositionAt(x, y);
 
-    if (this.currentSegmentLinearPosition !== newPosition) {
-      this.currentSegmentLinearPosition = newPosition;
+    if (this.cameraSegment.currentSegmentLinearPosition !== newPosition) {
+      this.cameraSegment.currentSegmentLinearPosition = newPosition;
 
       setTimeout(this.cameraSegment.clearFarthestSegments.bind(this.cameraSegment), 0);
       setTimeout(this.cameraSegment.loadNearestSegments.bind(this.cameraSegment), 0);
