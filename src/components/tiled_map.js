@@ -252,7 +252,7 @@ Crafty.c('TiledMap', {
 
           for (var y = tileY; y < (tileY + maxSegmentY) && y < maxY && y >= 0; y++) {
             for (var x = tileX; x < (tileX + maxSegmentX) && x < maxX && x >= 0; x++) {
-              var tiles = tiledMapEntity.getTilesGid(x, y).map(activateTile);
+              var tiles = tiledMapEntity.getDataAtTile(x, y).map(activateTile);
 
               for (var i = 0; i < tiles.length; i++) {
                 tiles[i].attr({
